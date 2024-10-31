@@ -16,9 +16,6 @@ const posts = (await getCollection('blog')).sort(
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
         <style>
-            main {
-                width: 960px;
-            }
             ul {
                 list-style-type: none;
             }
@@ -55,18 +52,17 @@ const posts = (await getCollection('blog')).sort(
                     {
                         posts.map((post) => (
                             <li>
+                                <p class='date'>
+                                    <FormattedDate date={post.data.pubDate} />
+                                </p>
                                 <a href={`/blog/${post.slug}/`}>
                                     <h4 class='title'>{post.data.title}</h4>
-                                    <p class='date'>
-                                        <FormattedDate
-                                            date={post.data.pubDate}
-                                        />
-                                    </p>
-                                    <p class='description'>
-                                        {post.data.description}
-                                    </p>
                                 </a>
+                                <p class='description'>
+                                    {post.data.description}
+                                </p>
                             </li>
+                            <hr />
                         ))
                     }
                 </ul>
